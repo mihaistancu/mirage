@@ -1,30 +1,30 @@
-let circles = [];
+let messages = [];
 let emitter;
-let topic;
+let queue;
 
 function setup() {
   createCanvas(400, 400);
 
   emitter = new Emitter();
-  topic = new Queue(100, 100, 200, 200);
+  queue = new Queue(100, 100, 200, 200);
 }
 
 function draw() {
   background(220);
 
-  emitter.update(circles);
+  emitter.update(messages);
 
-  topic.display();
+  queue.display();
   
   // Update and display circles
-  for (let i = circles.length - 1; i >= 0; i--) {
-    let circle = circles[i]
-    circle.update(circles[i-1]);
+  for (let i = messages.length - 1; i >= 0; i--) {
+    let circle = messages[i]
+    circle.update(messages[i-1]);
     circle.display();
     
-    if (circle.x >= topic.x + topic.width - circle.diameter / 2 && !circle.stopped) {
+    if (circle.x >= queue.x + queue.width - circle.diameter / 2 && !circle.stopped) {
       circle.stop();
-      circle.x = topic.x + topic.width - circle.diameter / 2; // Ensure the circle stops exactly at the edge
+      circle.x = queue.x + queue.width - circle.diameter / 2; // Ensure the circle stops exactly at the edge
     }
   }
 }

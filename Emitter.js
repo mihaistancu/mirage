@@ -1,15 +1,18 @@
 class Emitter {
   constructor() {
-    this.frequency = 10;
-    this.counter = 0;
+    this.frequency = 20;
+    this.frame = 0;
+    this.count = 0;
+    this.max = 10;
   }
 
   update(messages) {
-    this.counter++;
+    this.frame++;
 
-    if (this.counter >= this.frequency) {
+    if (this.frame >= this.frequency && this.count < this.max) {
       messages.push(new Message(0, 200));
-      this.counter = 0;
+      this.count++;
+      this.frame = 0;
     }
   }
 }
