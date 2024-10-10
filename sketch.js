@@ -1,29 +1,44 @@
 let messages = [];
-let emitter;
-let queue;
+let emitters;
+let queues;
 
 function setup() {
   createCanvas(400, 400);
 
-  emitter = new Emitter();
-  queue = new Queue(100, 100, 200, 200);
+  queues = [
+    new Queue(100, 10, 150, 20), 
+    new Queue(100, 50, 150, 20)
+  ];
+
+  emitters = [
+    new Emitter(20, 10, queues[0]), 
+    new Emitter(10, 10, queues[1])
+  ];
 }
 
 function draw() {
+  update();
+  display();
+}
+
+function update() {
+  for (let emitter of emitters) {
+    emitter.update(messages);
+  }
+
+  for (let message of messages) {
+    message.update();
+  }
+}
+
+function display() {
   background(220);
 
-  emitter.update(messages);
+  for (let queue of queues) {
+    queue.display();
+  }
 
-  queue.display();
-  
-  for (let i = messages.length - 1; i >= 0; i--) {
-    let message = messages[i]
-    message.update(messages[i-1]);
+  for (let message of messages) {
     message.display();
-    
-    if (message.x >= queue.x + queue.width - message.diameter / 2 && !message.stopped) {
-      message.stop();
-      message.x = queue.x + queue.width - message.diameter / 2; // Ensure the circle stops exactly at the edge
-    }
   }
 }
