@@ -1,8 +1,8 @@
 class Message {
   constructor(x, y, queue) {
     this.red = random(255);
-    this.blue = random(255);
     this.green = random(255);
+    this.blue = random(255);
     this.x = x;
     this.y = y;
     this.diameter = 10;

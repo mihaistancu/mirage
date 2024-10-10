@@ -1,6 +1,6 @@
 class Consumer {
-    constructor(frequency, queue) {
-      this.frequency = frequency;
+    constructor(config, queue) {
+      this.config = config;
       this.frame = 0;
       this.queue = queue;
     }
@@ -8,7 +8,7 @@ class Consumer {
     update(messages) {
       this.frame++;
   
-      if (this.frame >= this.frequency) {
+      if (this.frame >= this.config.freq()) {
         this.frame = 0;
         this.consume(messages);
       }

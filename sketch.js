@@ -12,12 +12,13 @@ function setup() {
   ];
 
   emitters = [
-    new Emitter(20, 10, queues[0]), 
-    new Emitter(10, 10, queues[1])
+    new Emitter({ freq: () => 20 + random(20) }, 1000000, queues[0]), 
+    new Emitter({ freq: () => random(40) }, 1000000, queues[1])
   ];
 
   consumers = [
-    new Consumer(40, queues[0])
+    new Consumer({ freq: () => 20 + random(20) }, queues[0]),
+    new Consumer({ freq: () => random(40)}, queues[1])
   ]
 }
 
