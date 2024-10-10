@@ -10,7 +10,7 @@ function setup() {
   createCanvas(400, 400);
   // Initialize small circles
   for (let i = 0; i < numCircles; i++) {
-    smallCircles.push(new Circle(-smallCircleDiameter/2 - i * spacing, 200));
+    smallCircles.push(new Event(-smallCircleDiameter/2 - i * spacing, 200));
   }
   // Initialize the topic (big rectangle)
   topic = new Topic(100, 100, 200, 200);
