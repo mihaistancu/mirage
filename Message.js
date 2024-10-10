@@ -1,5 +1,8 @@
 class Message {
   constructor(x, y, queue) {
+    this.red = random(255);
+    this.blue = random(255);
+    this.green = random(255);
     this.x = x;
     this.y = y;
     this.diameter = 10;
@@ -36,7 +39,7 @@ class Message {
   }
 
   display() {
-    fill(255, 0, 0); // Red color for the circle
+    fill(this.red, this.green, this.blue); // Red color for the circle
     ellipse(this.x, this.y, this.diameter);
   }
 }
