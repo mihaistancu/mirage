@@ -16,15 +16,14 @@ function draw() {
 
   queue.display();
   
-  // Update and display circles
   for (let i = messages.length - 1; i >= 0; i--) {
-    let circle = messages[i]
-    circle.update(messages[i-1]);
-    circle.display();
+    let message = messages[i]
+    message.update(messages[i-1]);
+    message.display();
     
-    if (circle.x >= queue.x + queue.width - circle.diameter / 2 && !circle.stopped) {
-      circle.stop();
-      circle.x = queue.x + queue.width - circle.diameter / 2; // Ensure the circle stops exactly at the edge
+    if (message.x >= queue.x + queue.width - message.diameter / 2 && !message.stopped) {
+      message.stop();
+      message.x = queue.x + queue.width - message.diameter / 2; // Ensure the circle stops exactly at the edge
     }
   }
 }
