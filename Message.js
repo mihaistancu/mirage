@@ -1,4 +1,4 @@
-class Event {
+class Message {
   constructor(x, y) {
     this.x = x;
     this.y = y;
