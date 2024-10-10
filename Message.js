@@ -11,13 +11,13 @@ class Message {
   update() {
     if (!this.stopped) {
       let nextX = this.x + this.speed;
-      let previous = this.queue.last;
       
-      if (previous && nextX + this.diameter / 2 > previous.x - previous.diameter / 2) {
+      if (this.queue && this.queue.last && nextX + this.diameter / 2 > this.queue.last.x - this.queue.last.diameter / 2) {
         this.stop();
+        let previous = this.queue.last;
         this.x = previous.x - previous.diameter / 2 - this.diameter / 2 - 1; // Stop with a 1-pixel gap
         this.queue.last = this;
-      } else if (nextX + this.diameter / 2 > this.diameter/2 + this.queue.x + this.queue.width) {
+      } else if (this.queue && nextX + this.diameter / 2 > this.diameter/2 + this.queue.x + this.queue.width) {
         this.stop();
         this.x = this.queue.x + this.queue.width - this.diameter/2 - 1;
         this.queue.last = this;
@@ -28,6 +28,11 @@ class Message {
 
   stop() {
     this.stopped = true;
+  }
+
+  resume() {
+    this.queue = null;
+    this.stopped = false;
   }
 
   display() {

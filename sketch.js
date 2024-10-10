@@ -1,6 +1,7 @@
 let messages = [];
 let emitters;
 let queues;
+let consumers;
 
 function setup() {
   createCanvas(400, 400);
@@ -14,6 +15,10 @@ function setup() {
     new Emitter(20, 10, queues[0]), 
     new Emitter(10, 10, queues[1])
   ];
+
+  consumers = [
+    new Consumer(40, queues[0])
+  ]
 }
 
 function draw() {
@@ -28,6 +33,10 @@ function update() {
 
   for (let message of messages) {
     message.update();
+  }
+
+  for (let consumer of consumers) {
+    consumer.update(messages);
   }
 }
 
