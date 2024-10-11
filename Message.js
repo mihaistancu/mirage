@@ -6,7 +6,7 @@ class Message {
     this.x = 0;
     this.y = 0;
     this.diameter = 10;
-    this.speed = 1;
+    this.speed = 10;
     this.stopped = false;
     this.queue = null;
   }
@@ -25,10 +25,18 @@ class Message {
     }
   }
 
+  hit(x) {
+    return this.x + this.diameter / 2 + 3 > x;
+  }
+
   sendTo(queue) {
     this.queue = queue;
-    this.x = 0;
-    this.y = queue.y + queue.height / 2;
+
+    if (this.y != queue.y + queue.height / 2) {
+      this.x = 0;
+      this.y = queue.y + queue.height / 2;
+    } 
+
     this.stopped = false;
   }
 

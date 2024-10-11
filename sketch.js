@@ -4,20 +4,20 @@ let queues;
 let consumers;
 
 function setup() {
-  createCanvas(400, 400);
+  createCanvas(800, 400);
 
   queues = [
-    new Queue(150, 10, 150, 20), 
-    new Queue(150, 50, 150, 20)
+    new Queue(100, 10, 150, 20), 
+    new Queue(400, 10, 150, 20)
   ];
 
   emitters = [
-    new Emitter({ freq: () => 10 + random(40)*5 }, 1000000, queues[0])
+    new Emitter({ freq: () =>  random(40) }, 1000000, queues[0])
   ];
 
   consumers = [
-    new Relay({ freq: () => 10 + random(40)*5 }, queues[0], queues[1]),
-    new Consumer({ freq: () => 10 + random(40)*5}, queues[1])
+    new Relay({ freq: () => random(40) }, queues[0], queues[1]),
+    new Consumer({ freq: () => random(40)}, queues[1])
   ]
 }
 

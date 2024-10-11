@@ -11,11 +11,15 @@ class Emitter {
     this.frame++;
 
     if (this.frame >= this.config.freq() && this.count < this.max) {
-      let message = new Message(0, 0);
-      message.sendTo(this.queue);
-      messages.push(message);
+      this.emit(messages);
       this.count++;
       this.frame = 0;
     }
+  }
+
+  emit(messages) {
+    let message = new Message();
+    message.sendTo(this.queue);
+    messages.push(message);
   }
 }
