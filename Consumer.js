@@ -5,27 +5,20 @@ class Consumer {
       this.queue = queue;
     }
   
-    update(messages) {
+    update() {
       this.frame++;
   
       if (this.frame >= this.config.freq()) {
         this.frame = 0;
-        this.consume(messages);
+        this.consume();
       }
     }
 
-    consume(messages) {
-      for (let message of messages) {
-        if (message.queue === this.queue && message.stopped) {
+    consume() {
+        let message = this.queue.dequeue();
+        if (message) {
+            message.queue = null;
             message.resume();
-            break;
         }
-      }
-
-      for (let message of messages) {
-        if (message.queue === this.queue) {
-            message.x += message.diameter + 1;
-        }
-      }
     }
 }

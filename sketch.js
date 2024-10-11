@@ -7,18 +7,17 @@ function setup() {
   createCanvas(400, 400);
 
   queues = [
-    new Queue(100, 10, 150, 20), 
-    new Queue(100, 50, 150, 20)
+    new Queue(150, 10, 150, 20), 
+    new Queue(150, 50, 150, 20)
   ];
 
   emitters = [
-    new Emitter({ freq: () => 20 + random(20) }, 1000000, queues[0]), 
-    new Emitter({ freq: () => 1 + random(30) }, 1000000, queues[1])
+    new Emitter({ freq: () => 10 + random(40)*5 }, 1000000, queues[0])
   ];
 
   consumers = [
-    new Consumer({ freq: () => 20 + random(20) }, queues[0]),
-    new Consumer({ freq: () => 1 + random(30)}, queues[1])
+    new Relay({ freq: () => 10 + random(40)*5 }, queues[0], queues[1]),
+    new Consumer({ freq: () => 10 + random(40)*5}, queues[1])
   ]
 }
 
