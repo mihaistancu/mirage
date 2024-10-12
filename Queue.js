@@ -29,6 +29,7 @@ class Queue {
   receive(message) {
     this.messages.push(message);
     message.x = this.endOfQueue - message.diameter;
+    message.y = this.y + this.height / 2;
     this.endOfQueue -= message.diameter;
     message.stopped = true;
   }

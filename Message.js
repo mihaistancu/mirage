@@ -1,11 +1,13 @@
 class Message {
-  constructor() {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
     this.red = random(255);
     this.green = random(255);
     this.blue = random(255);
-    this.x = 0;
-    this.y = 0;
-    this.diameter = 5;
+    this.x = x;
+    this.y = y;
+    this.diameter = 1;
     this.speed = 10;
     this.stopped = false;
     this.target = null;

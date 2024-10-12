@@ -3,6 +3,7 @@ class Sink {
         this.x = x;
         this.y = y;
         this.messages = messages;
+        this.receivedCount = 0;
     }
 
     getX() {
@@ -22,9 +23,14 @@ class Sink {
         if (index > -1) {
             this.messages.splice(index, 1);
         }
+        this.receivedCount++;
     }
     
     display() {
         rect(this.x, this.y, 10, 10);
+        fill(0);
+        textAlign(CENTER, TOP);
+        textSize(12);
+        text(this.receivedCount, this.x + 5, this.y + 15);
     }
 }
