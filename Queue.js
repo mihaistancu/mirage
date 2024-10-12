@@ -11,6 +11,11 @@ class Queue {
   display() {
     fill(200);
     rect(this.x, this.y, this.width, this.height);
+    
+    fill(0);
+    textAlign(CENTER, TOP);
+    textSize(12);
+    text(this.messages.length, this.x + this.width / 2, this.y + this.height + 5);
   }
   
   hasReceived(message) {

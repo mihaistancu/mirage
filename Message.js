@@ -5,7 +5,7 @@ class Message {
     this.blue = random(255);
     this.x = 0;
     this.y = 0;
-    this.diameter = 10;
+    this.diameter = 5;
     this.speed = 10;
     this.stopped = false;
     this.queue = null;
