@@ -1,5 +1,5 @@
 class Emitter {
-  constructor(config, max, queue) {
+  constructor(config, max, queue, messages) {
     this.config = config;
     this.frame = 0;
     this.count = 0;
@@ -7,17 +7,17 @@ class Emitter {
     this.queue = queue;
   }
 
-  update(messages) {
+  update() {
     this.frame++;
 
     if (this.frame >= this.config.freq() && this.count < this.max) {
-      this.emit(messages);
+      this.emit();
       this.count++;
       this.frame = 0;
     }
   }
 
-  emit(messages) {
+  emit() {
     let message = new Message();
     message.sendTo(this.queue);
     messages.push(message);

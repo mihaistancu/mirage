@@ -6,12 +6,12 @@ class Relay {
       this.targetQueue = targetQueue;
     }
   
-    update(messages) {
+    update() {
       this.frame++;
   
       if (this.frame >= this.config.freq()) {
         this.frame = 0;
-        this.relay(messages);
+        this.relay();
       }
     }
 

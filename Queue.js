@@ -17,12 +17,16 @@ class Queue {
     textSize(12);
     text(this.messages.length, this.x + this.width / 2, this.y + this.height + 5);
   }
-  
-  hasReceived(message) {
-    return message.hit(this.endOfQueue);
+
+  getX() {
+    return this.endOfQueue;
   }
 
-  enqueue(message) {
+  getY() {
+    return this.y + this.height / 2;
+  }
+  
+  receive(message) {
     this.messages.push(message);
     message.x = this.endOfQueue - message.diameter;
     this.endOfQueue -= message.diameter;

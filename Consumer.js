@@ -17,7 +17,14 @@ class Consumer {
     consume() {
         let message = this.queue.dequeue();
         if (message) {
-            message.queue = null;
+            message.sendTo({
+                getX: function() {
+                    return 10000;
+                },
+                getY: function() {
+                    return this.queue.y;
+                }
+            });
             message.resume();
         }
     }

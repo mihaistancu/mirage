@@ -8,7 +8,7 @@ class Message {
     this.diameter = 5;
     this.speed = 10;
     this.stopped = false;
-    this.queue = null;
+    this.target = null;
   }
 
   update() {
@@ -16,27 +16,34 @@ class Message {
       return 
     }
   
-    this.x += this.speed;
+    this.moveTowardsTarget();
 
-    if (this.queue) {
-      if (this.queue.hasReceived(this)) {
-        this.queue.enqueue(this);
-      }
+    if (this.hitTarget()) {
+      this.target.receive(this);
+    }  
+  }
+
+  moveTowardsTarget() {
+    let dx = this.target.getX() - this.x;
+    let dy = this.target.getY() - this.y;
+    let distance = Math.sqrt(dx * dx + dy * dy);
+
+    if (distance < this.speed) {
+      this.x = this.target.getX();
+      this.y = this.target.getY();
+    } else {
+      let angle = Math.atan2(dy, dx);
+      this.x += Math.cos(angle) * this.speed;
+      this.y += Math.sin(angle) * this.speed;
     }
   }
 
-  hit(x) {
-    return this.x + this.diameter / 2 + 3 > x;
+  hitTarget() {
+    return this.x + this.diameter / 2 + 3 > this.target.getX();
   }
 
   sendTo(queue) {
-    this.queue = queue;
-
-    if (this.y != queue.y + queue.height / 2) {
-      this.x = 0;
-      this.y = queue.y + queue.height / 2;
-    } 
-
+    this.target = queue;
     this.stopped = false;
   }
 
