@@ -28,7 +28,6 @@ function setup() {
 function draw() {
   update();
   display();
-  console.log(messages.length);
 }
 
 function update() {
